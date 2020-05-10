@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "unlittorches:item/flint_and_wood"
+    }
+}
