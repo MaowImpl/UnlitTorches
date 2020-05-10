@@ -7,6 +7,11 @@
   "authors": [
     "Maowcraft"
   ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/unlit-torches",
+    "sources": "https://github.com/Maowcraft/UnlitTorches",
+    "issues": "https://github.com/Maowcraft/UnlitTorches/issues"
+  },
   "license": "MIT",
   "icon": "assets/unlittorches/icon.png",
   "environment": "*",

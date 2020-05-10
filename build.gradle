@@ -13,6 +13,17 @@ group = project.maven_group
 minecraft {
 }
 
+repositories {
+    maven {
+        name = "Cotton"
+        url = "https://server.bbkr.space/artifactory/libs-release/"
+    }
+    maven {
+        name = "Devan Repo"
+        url = "https://raw.githubusercontent.com/Devan-Kerman/Devan-Repo/master/"
+    }
+}
+
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
