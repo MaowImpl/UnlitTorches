@@ -5,5 +5,12 @@
   "item.unlittorches.flint_and_coal": "Flint and Coal",
   "item.unlittorches.flint_and_gold": "Flint and Gold",
   "item.unlittorches.flint_and_diamond": "Flint and Diamond",
-  "item.unlittorches.flint_and_emerald": "Flint and Emerald"
+  "item.unlittorches.flint_and_emerald": "Flint and Emerald",
+
+  "item.unlittorches.creative_flint_and_steel": "Creative Flint and Steel",
+
+  "text.autoconfig.unlittorches.title": "Unlit Torches Config",
+  "text.autoconfig.unlittorches.option.litTorchMovesUnlitToInventory": "Lit torch moves unlit torch on inventory when lit",
+  "text.autoconfig.unlittorches.option.itemsThatCanLightList": "User-defined items that can light torches list"
+
 }

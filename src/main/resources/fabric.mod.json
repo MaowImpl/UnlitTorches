@@ -21,6 +21,9 @@
     ],
     "client": [
       "maowcraft.unlittorches.UnlitTorchesClient"
+    ],
+    "modmenu": [
+      "maowcraft.unlittorches.config.UnlitTorchesModMenuEntry"
     ]
   },
   "depends": {

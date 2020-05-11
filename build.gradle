@@ -15,12 +15,8 @@ minecraft {
 
 repositories {
     maven {
-        name = "Cotton"
-        url = "https://server.bbkr.space/artifactory/libs-release/"
-    }
-    maven {
-        name = "Devan Repo"
-        url = "https://raw.githubusercontent.com/Devan-Kerman/Devan-Repo/master/"
+        name = "Prospector ModMenu Maven"
+        url = "https://maven.fabricmc.net/io/github/prospector/modmenu/"
     }
 }
 
@@ -30,6 +26,17 @@ dependencies {
     modCompile "net.fabricmc:fabric-loader:${project.loader_version}"
 
     modCompile "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+    // Mod Menu (for prod.)
+    modImplementation("io.github.prospector:modmenu:1.10.2+build.32") { transitive = false }
+
+    // Cloth Config
+    modApi "me.shedaniel.cloth:config-2:2.14.0"
+    include "me.shedaniel.cloth:config-2:2.14.0"
+
+    // Auto Config
+    modApi "me.sargunvohra.mcmods:autoconfig1u:2.1.0"
+    include "me.sargunvohra.mcmods:autoconfig1u:2.1.0"
 }
 
 processResources {

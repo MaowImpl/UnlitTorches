@@ -1,6 +1,8 @@
 package maowcraft.unlittorches;
 
 import maowcraft.unlittorches.common.init.UnlitTorchesContent;
+import maowcraft.unlittorches.config.UnlitTorchesConfig;
+import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -11,6 +13,7 @@ import net.minecraft.client.render.RenderLayer;
 public class UnlitTorchesClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
+        AutoConfig.getGuiRegistry(UnlitTorchesConfig.class);
         BlockRenderLayerMap.INSTANCE.putBlock(UnlitTorchesContent.UNLIT_TORCH, RenderLayer.getCutout());
     }
 }

@@ -25,6 +25,8 @@ public class UnlitTorchesContent {
     public static final Item FLINT_AND_DIAMOND;
     public static final Item FLINT_AND_EMERALD;
 
+    public static final Item CREATIVE_FLINT_AND_STEEL;
+
     static {
         // Block
         UNLIT_TORCH = new UnlitTorchBlock(FabricBlockSettings.of(Material.PART).breakByHand(true).sounds(BlockSoundGroup.WOOD));
@@ -35,6 +37,8 @@ public class UnlitTorchesContent {
         FLINT_AND_GOLD = new OtherFlintAndSteelItem(new Item.Settings().group(ItemGroup.TOOLS), OtherFlintAndSteelTypes.GOLD);
         FLINT_AND_DIAMOND = new OtherFlintAndSteelItem(new Item.Settings().group(ItemGroup.TOOLS), OtherFlintAndSteelTypes.DIAMOND);
         FLINT_AND_EMERALD = new OtherFlintAndSteelItem(new Item.Settings().group(ItemGroup.TOOLS), OtherFlintAndSteelTypes.EMERALD);
+
+        CREATIVE_FLINT_AND_STEEL = new OtherFlintAndSteelItem(new Item.Settings().group(ItemGroup.TOOLS), OtherFlintAndSteelTypes.CREATIVE);
     }
 
     public static void registerAll() {
@@ -54,6 +58,8 @@ public class UnlitTorchesContent {
         Registry.register(Registry.ITEM, new Identifier(UnlitTorches.MODID, "flint_and_gold"), FLINT_AND_GOLD);
         Registry.register(Registry.ITEM, new Identifier(UnlitTorches.MODID, "flint_and_diamond"), FLINT_AND_DIAMOND);
         Registry.register(Registry.ITEM, new Identifier(UnlitTorches.MODID, "flint_and_emerald"), FLINT_AND_EMERALD);
+
+        Registry.register(Registry.ITEM, new Identifier(UnlitTorches.MODID, "creative_flint_and_steel"), CREATIVE_FLINT_AND_STEEL);
 
         // BlockItem
         Registry.register(Registry.ITEM, new Identifier(UnlitTorches.MODID, "unlit_torch"), new BlockItem(UNLIT_TORCH, new Item.Settings().group(ItemGroup.DECORATIONS)));

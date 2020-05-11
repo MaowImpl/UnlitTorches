@@ -6,7 +6,8 @@ public enum OtherFlintAndSteelTypes {
     COAL(32),
     GOLD(32),
     DIAMOND(96),
-    EMERALD(128);
+    EMERALD(128),
+    CREATIVE(0);
 
     public int damage;
 
