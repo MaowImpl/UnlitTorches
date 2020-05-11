@@ -1,7 +1,9 @@
 package maowcraft.unlittorches.common.block;
 
 import maowcraft.unlittorches.api.ICanLightUnlitTorch;
+import maowcraft.unlittorches.api.IHasAdvancedLightFunctions;
 import maowcraft.unlittorches.config.UnlitTorchesConfig;
+import maowcraft.unlittorches.util.TorchTypes;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -9,6 +11,7 @@ import net.minecraft.block.TorchBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
@@ -20,8 +23,11 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 public class UnlitTorchBlock extends TorchBlock {
-    public UnlitTorchBlock(Settings settings) {
-        super(settings.nonOpaque().noCollision());
+    private TorchTypes type;
+
+    public UnlitTorchBlock(Settings settings, TorchTypes type) {
+        super(settings.nonOpaque().noCollision(), ParticleTypes.FLAME);
+        this.type = type;
     }
 
     @SuppressWarnings("deprecation")
@@ -30,38 +36,43 @@ public class UnlitTorchBlock extends TorchBlock {
         ItemStack itemStack = player.getStackInHand(hand);
         UnlitTorchesConfig config = AutoConfig.getConfigHolder(UnlitTorchesConfig.class).getConfig();
         boolean itemCanLight = false;
-        for (String itemID : config.getItemsThatCanLightList()) {
-            String s = itemStack.getTranslationKey().replace('.', ':');
-            if (s.substring(s.indexOf(':') + 1).equals(itemID)) {
-                itemCanLight = true;
-                break;
+        if (config.getItemsThatCanLightList() != null) {
+            for (String itemID : config.getItemsThatCanLightList()) {
+                String s = itemStack.getTranslationKey().replace('.', ':');
+                if (s.substring(s.indexOf(':') + 1).equals(itemID)) {
+                    itemCanLight = true;
+                    break;
+                }
             }
         }
-        if (itemStack.getItem() == Items.FLINT_AND_STEEL || itemStack.getItem() instanceof ICanLightUnlitTorch || itemStack.getItem() == Items.TORCH || itemCanLight) {
+        if (itemStack.getItem() == Items.FLINT_AND_STEEL || itemStack.getItem() instanceof ICanLightUnlitTorch || itemStack.getItem() == type.litItem || itemCanLight) {
             if (itemStack.getItem() instanceof ICanLightUnlitTorch) {
                 world.playSound(player, pos.getX(), pos.getY(), pos.getZ(), ((ICanLightUnlitTorch) itemStack.getItem()).soundPlayedOnUse(), SoundCategory.NEUTRAL, 1.0F, 1.0F);
             } else {
                 world.playSound(player, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.NEUTRAL, 1.0F, 1.0F);
             }
             if (!world.isClient()) {
-                if (itemStack.getItem() == Items.TORCH && config.canLitTorchMoveUnlitToInventory()) {
-                    player.giveItemStack(new ItemStack(Items.TORCH));
+                if (itemStack.getItem() instanceof IHasAdvancedLightFunctions) {
+                    ((IHasAdvancedLightFunctions) itemStack.getItem()).onTorchLight();
+                }
+                if (itemStack.getItem() == type.litItem && config.canLitTorchMoveUnlitToInventory()) {
+                    player.giveItemStack(new ItemStack(type.litBlock));
                     world.setBlockState(pos, Blocks.AIR.getDefaultState());
                 } else if (itemStack.getItem() instanceof ICanLightUnlitTorch && ((ICanLightUnlitTorch) itemStack.getItem()).addLitTorchToInventory()) {
-                    player.giveItemStack(new ItemStack(Items.TORCH));
+                    player.giveItemStack(new ItemStack(type.litBlock));
                     world.setBlockState(pos, Blocks.AIR.getDefaultState());
-                    if (((ICanLightUnlitTorch) itemStack.getItem()).depletedOnUse()) {
+                    if (((ICanLightUnlitTorch) itemStack.getItem()).depletedOnUse() && !player.isCreative()) {
                         player.inventory.removeOne(itemStack);
                     }
                 } else {
                     if (itemStack.getItem() instanceof ICanLightUnlitTorch) {
-                        if (((ICanLightUnlitTorch) itemStack.getItem()).depletedOnUse()) {
+                        if (((ICanLightUnlitTorch) itemStack.getItem()).depletedOnUse() && !player.isCreative()) {
                             player.inventory.removeOne(itemStack);
                         }
-                    } else {
+                    } else if (itemStack.getItem() != type.litItem && !player.isCreative()) {
                         player.inventory.removeOne(itemStack);
                     }
-                    world.setBlockState(pos, Blocks.TORCH.getDefaultState());
+                    world.setBlockState(pos, type.litBlock.getDefaultState());
                 }
                 itemStack.damage(1, player, (playerEntity) -> playerEntity.sendToolBreakStatus(hand));
             }

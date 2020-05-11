@@ -15,5 +15,7 @@ public class UnlitTorchesClient implements ClientModInitializer {
     public void onInitializeClient() {
         AutoConfig.getGuiRegistry(UnlitTorchesConfig.class);
         BlockRenderLayerMap.INSTANCE.putBlock(UnlitTorchesContent.UNLIT_TORCH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(UnlitTorchesContent.UNLIT_SOUL_TORCH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(UnlitTorchesContent.UNLIGHTABLE_UNLIT_TORCH, RenderLayer.getCutout());
     }
 }

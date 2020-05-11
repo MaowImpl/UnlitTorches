@@ -7,11 +7,8 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 
 public class OtherFlintAndSteelItem extends FlintAndSteelItem implements ICanLightUnlitTorch {
-    private OtherFlintAndSteelTypes type;
-
     public OtherFlintAndSteelItem(Settings settings, OtherFlintAndSteelTypes type) {
         super(settings.maxDamage(type.damage));
-        this.type = type;
     }
 
     @Override

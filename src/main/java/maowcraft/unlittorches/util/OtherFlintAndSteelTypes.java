@@ -7,6 +7,7 @@ public enum OtherFlintAndSteelTypes {
     GOLD(32),
     DIAMOND(96),
     EMERALD(128),
+    NETHERITE(512),
     CREATIVE(0);
 
     public int damage;

@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
 public class UnlitTorches implements ModInitializer {
     public static final String MODID = "unlittorches";
 
-    private static Logger logger = LogManager.getLogger(MODID);
+    private static final Logger logger = LogManager.getLogger(MODID);
 
     @Override
     public void onInitialize() {
