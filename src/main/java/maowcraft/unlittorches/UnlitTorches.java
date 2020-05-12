@@ -15,8 +15,8 @@ public class UnlitTorches implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        UnlitTorchesContent.registerAll();
         AutoConfig.register(UnlitTorchesConfig.class, JanksonConfigSerializer::new);
+        UnlitTorchesContent.registerAll();
         logger.info("UnlitTorches has initialized.");
     }
 }

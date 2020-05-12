@@ -2,16 +2,19 @@ package maowcraft.unlittorches.common.init;
 
 import maowcraft.unlittorches.UnlitTorches;
 import maowcraft.unlittorches.common.block.UnlightableUnlitTorchBlock;
+import maowcraft.unlittorches.common.block.UnlightableUnlitWallTorchBlock;
 import maowcraft.unlittorches.common.block.UnlitTorchBlock;
+import maowcraft.unlittorches.common.block.UnlitWallTorchBlock;
 import maowcraft.unlittorches.common.item.OtherFlintAndSteelItem;
 import maowcraft.unlittorches.util.OtherFlintAndSteelTypes;
 import maowcraft.unlittorches.util.TorchTypes;
+import maowcraft.unlittorches.util.WallTorchTypes;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.WallStandingBlockItem;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -23,7 +26,12 @@ public class UnlitTorchesContent {
     public static final Block TRAPPED_UNLIT_TORCH;
     public static final Block UNLIGHTABLE_UNLIT_TORCH;
 
-    // Colored Flames (Mod Compat) Items
+    // WallBlock
+    public static final Block UNLIT_WALL_TORCH;
+    public static final Block UNLIT_SOUL_WALL_TORCH;
+    public static final Block UNLIT_REDSTONE_WALL_TORCH;
+    public static final Block TRAPPED_UNLIT_WALL_TORCH;
+    public static final Block UNLIGHTABLE_UNLIT_WALL_TORCH;
 
     // Item
     public static final Item FLINT_AND_WOOD;
@@ -42,6 +50,13 @@ public class UnlitTorchesContent {
         UNLIT_REDSTONE_TORCH = new UnlitTorchBlock(FabricBlockSettings.of(Material.PART).breakInstantly(), TorchTypes.REDSTONE);
         TRAPPED_UNLIT_TORCH = new UnlitTorchBlock(FabricBlockSettings.of(Material.PART).breakInstantly(), TorchTypes.TRAPPED);
         UNLIGHTABLE_UNLIT_TORCH = new UnlightableUnlitTorchBlock(FabricBlockSettings.of(Material.PART).breakInstantly());
+
+        // Wall Block
+        UNLIT_WALL_TORCH = new UnlitWallTorchBlock(FabricBlockSettings.of(Material.PART).breakInstantly(), WallTorchTypes.REGULAR);
+        UNLIT_SOUL_WALL_TORCH = new UnlitWallTorchBlock(FabricBlockSettings.of(Material.PART).breakInstantly(), WallTorchTypes.SOUL);
+        UNLIT_REDSTONE_WALL_TORCH = new UnlitWallTorchBlock(FabricBlockSettings.of(Material.PART).breakInstantly(), WallTorchTypes.REDSTONE);
+        TRAPPED_UNLIT_WALL_TORCH = new UnlitWallTorchBlock(FabricBlockSettings.of(Material.PART).breakInstantly(), WallTorchTypes.TRAPPED);
+        UNLIGHTABLE_UNLIT_WALL_TORCH = new UnlightableUnlitWallTorchBlock(FabricBlockSettings.of(Material.PART).breakInstantly());
 
         // Item
         FLINT_AND_WOOD = new OtherFlintAndSteelItem(new Item.Settings().group(ItemGroup.TOOLS), OtherFlintAndSteelTypes.WOOD);
@@ -66,6 +81,13 @@ public class UnlitTorchesContent {
         Registry.register(Registry.BLOCK, new Identifier(UnlitTorches.MODID, "unlit_redstone_torch"), UNLIT_REDSTONE_TORCH);
         Registry.register(Registry.BLOCK, new Identifier(UnlitTorches.MODID, "trapped_unlit_torch"), TRAPPED_UNLIT_TORCH);
         Registry.register(Registry.BLOCK, new Identifier(UnlitTorches.MODID, "unlightable_unlit_torch"), UNLIGHTABLE_UNLIT_TORCH);
+
+        // WallBlock
+        Registry.register(Registry.BLOCK, new Identifier(UnlitTorches.MODID, "unlit_wall_torch"), UNLIT_WALL_TORCH);
+        Registry.register(Registry.BLOCK, new Identifier(UnlitTorches.MODID, "unlit_soul_wall_torch"), UNLIT_SOUL_WALL_TORCH);
+        Registry.register(Registry.BLOCK, new Identifier(UnlitTorches.MODID, "unlit_redstone_wall_torch"), UNLIT_REDSTONE_WALL_TORCH);
+        Registry.register(Registry.BLOCK, new Identifier(UnlitTorches.MODID, "trapped_unlit_wall_torch"), TRAPPED_UNLIT_WALL_TORCH);
+        Registry.register(Registry.BLOCK, new Identifier(UnlitTorches.MODID, "unlightable_unlit_wall_torch"), UNLIGHTABLE_UNLIT_WALL_TORCH);
     }
 
     private static void registerItem() {
@@ -80,10 +102,10 @@ public class UnlitTorchesContent {
         Registry.register(Registry.ITEM, new Identifier(UnlitTorches.MODID, "creative_flint_and_steel"), CREATIVE_FLINT_AND_STEEL);
 
         // BlockItem
-        Registry.register(Registry.ITEM, new Identifier(UnlitTorches.MODID, "unlit_torch"), new BlockItem(UNLIT_TORCH, new Item.Settings().group(ItemGroup.DECORATIONS)));
-        Registry.register(Registry.ITEM, new Identifier(UnlitTorches.MODID, "unlit_soul_torch"), new BlockItem(UNLIT_SOUL_TORCH, new Item.Settings().group(ItemGroup.DECORATIONS)));
-        Registry.register(Registry.ITEM, new Identifier(UnlitTorches.MODID, "unlit_redstone_torch"), new BlockItem(UNLIT_REDSTONE_TORCH, new Item.Settings().group(ItemGroup.REDSTONE)));
-        Registry.register(Registry.ITEM, new Identifier(UnlitTorches.MODID, "trapped_unlit_torch"), new BlockItem(TRAPPED_UNLIT_TORCH, new Item.Settings().group(ItemGroup.REDSTONE)));
-        Registry.register(Registry.ITEM, new Identifier(UnlitTorches.MODID, "unlightable_unlit_torch"), new BlockItem(UNLIGHTABLE_UNLIT_TORCH, new Item.Settings().group(ItemGroup.DECORATIONS)));
+        Registry.register(Registry.ITEM, new Identifier(UnlitTorches.MODID, "unlit_torch"), new WallStandingBlockItem(UNLIT_TORCH, UNLIT_WALL_TORCH, new Item.Settings().group(ItemGroup.DECORATIONS)));
+        Registry.register(Registry.ITEM, new Identifier(UnlitTorches.MODID, "unlit_soul_torch"), new WallStandingBlockItem(UNLIT_SOUL_TORCH, UNLIT_SOUL_WALL_TORCH, new Item.Settings().group(ItemGroup.DECORATIONS)));
+        Registry.register(Registry.ITEM, new Identifier(UnlitTorches.MODID, "unlit_redstone_torch"), new WallStandingBlockItem(UNLIT_REDSTONE_TORCH, UNLIT_REDSTONE_WALL_TORCH, new Item.Settings().group(ItemGroup.REDSTONE)));
+        Registry.register(Registry.ITEM, new Identifier(UnlitTorches.MODID, "trapped_unlit_torch"), new WallStandingBlockItem(TRAPPED_UNLIT_TORCH, TRAPPED_UNLIT_WALL_TORCH, new Item.Settings().group(ItemGroup.REDSTONE)));
+        Registry.register(Registry.ITEM, new Identifier(UnlitTorches.MODID, "unlightable_unlit_torch"), new WallStandingBlockItem(UNLIGHTABLE_UNLIT_TORCH, UNLIGHTABLE_UNLIT_WALL_TORCH, new Item.Settings().group(ItemGroup.DECORATIONS)));
     }
 }

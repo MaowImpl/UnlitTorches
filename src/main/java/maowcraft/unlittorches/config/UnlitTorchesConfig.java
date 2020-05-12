@@ -10,13 +10,15 @@ import java.util.List;
 @Config(name = UnlitTorches.MODID)
 public class UnlitTorchesConfig implements ConfigData {
     private boolean litTorchMovesUnlitToInventory = true;
-
+//    private boolean canTorchesBeRandomlyExtinguished = true;
+//    private boolean canTorchesBeExtinguishedByRain = true;
     private List<String> itemsThatCanLightList;
 
     public List<String> getItemsThatCanLightList() {
         return itemsThatCanLightList;
     }
-
+//    public boolean canTorchesBeExtinguishedByRain() { return canTorchesBeExtinguishedByRain; }
+//    public boolean canTorchesBeRandomlyExtinguished() { return canTorchesBeRandomlyExtinguished; }
     public boolean canLitTorchMoveUnlitToInventory() {
         return litTorchMovesUnlitToInventory;
     }

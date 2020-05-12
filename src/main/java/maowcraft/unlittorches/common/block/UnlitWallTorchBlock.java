@@ -3,15 +3,16 @@ package maowcraft.unlittorches.common.block;
 import maowcraft.unlittorches.api.ICanLightUnlitTorch;
 import maowcraft.unlittorches.api.IHasAdvancedLightFunctions;
 import maowcraft.unlittorches.config.UnlitTorchesConfig;
-import maowcraft.unlittorches.util.TorchTypes;
+import maowcraft.unlittorches.util.WallTorchTypes;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.TorchBlock;
+import net.minecraft.block.WallTorchBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
@@ -22,10 +23,10 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class UnlitTorchBlock extends TorchBlock {
-    public final TorchTypes type;
+public class UnlitWallTorchBlock extends WallTorchBlock {
+    private final WallTorchTypes type;
 
-    public UnlitTorchBlock(Settings settings, TorchTypes type) {
+    public UnlitWallTorchBlock(Settings settings, WallTorchTypes type) {
         super(settings.nonOpaque().noCollision(), ParticleTypes.FLAME);
         this.type = type;
     }
@@ -62,7 +63,7 @@ public class UnlitTorchBlock extends TorchBlock {
                     world.setBlockState(pos, Blocks.AIR.getDefaultState());
                 } else if (itemStack.getItem() instanceof ICanLightUnlitTorch && ((ICanLightUnlitTorch) itemStack.getItem()).addLitTorchToInventory()) {
                     player.giveItemStack(new ItemStack(type.litBlock));
-                    world.setBlockState(pos, type.litBlock.getDefaultState());
+                    world.setBlockState(pos, type.litBlock.getDefaultState().with(FACING, state.get(FACING)));
                     if (((ICanLightUnlitTorch) itemStack.getItem()).depletedOnUse() && !player.isCreative()) {
                         player.inventory.removeOne(itemStack);
                     }
@@ -74,7 +75,7 @@ public class UnlitTorchBlock extends TorchBlock {
                     } else if (itemStack.getItem() != type.litItem && !player.isCreative()) {
                         player.inventory.removeOne(itemStack);
                     }
-                    world.setBlockState(pos, type.litBlock.getDefaultState());
+                    world.setBlockState(pos, type.litBlock.getDefaultState().with(FACING, state.get(FACING)));
                 }
                 itemStack.damage(1, player, (playerEntity) -> playerEntity.sendToolBreakStatus(hand));
             }
