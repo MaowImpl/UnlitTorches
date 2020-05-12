@@ -19,7 +19,11 @@ public class UnlitTorchesContent {
     // Block
     public static final Block UNLIT_TORCH;
     public static final Block UNLIT_SOUL_TORCH;
+    public static final Block UNLIT_REDSTONE_TORCH;
+    public static final Block TRAPPED_UNLIT_TORCH;
     public static final Block UNLIGHTABLE_UNLIT_TORCH;
+
+    // Colored Flames (Mod Compat) Items
 
     // Item
     public static final Item FLINT_AND_WOOD;
@@ -35,6 +39,8 @@ public class UnlitTorchesContent {
         // Block
         UNLIT_TORCH = new UnlitTorchBlock(FabricBlockSettings.of(Material.PART).breakInstantly(), TorchTypes.REGULAR);
         UNLIT_SOUL_TORCH = new UnlitTorchBlock(FabricBlockSettings.of(Material.PART).breakInstantly(), TorchTypes.SOUL);
+        UNLIT_REDSTONE_TORCH = new UnlitTorchBlock(FabricBlockSettings.of(Material.PART).breakInstantly(), TorchTypes.REDSTONE);
+        TRAPPED_UNLIT_TORCH = new UnlitTorchBlock(FabricBlockSettings.of(Material.PART).breakInstantly(), TorchTypes.TRAPPED);
         UNLIGHTABLE_UNLIT_TORCH = new UnlightableUnlitTorchBlock(FabricBlockSettings.of(Material.PART).breakInstantly());
 
         // Item
@@ -57,6 +63,8 @@ public class UnlitTorchesContent {
         // Block
         Registry.register(Registry.BLOCK, new Identifier(UnlitTorches.MODID, "unlit_torch"), UNLIT_TORCH);
         Registry.register(Registry.BLOCK, new Identifier(UnlitTorches.MODID, "unlit_soul_torch"), UNLIT_SOUL_TORCH);
+        Registry.register(Registry.BLOCK, new Identifier(UnlitTorches.MODID, "unlit_redstone_torch"), UNLIT_REDSTONE_TORCH);
+        Registry.register(Registry.BLOCK, new Identifier(UnlitTorches.MODID, "trapped_unlit_torch"), TRAPPED_UNLIT_TORCH);
         Registry.register(Registry.BLOCK, new Identifier(UnlitTorches.MODID, "unlightable_unlit_torch"), UNLIGHTABLE_UNLIT_TORCH);
     }
 
@@ -74,6 +82,8 @@ public class UnlitTorchesContent {
         // BlockItem
         Registry.register(Registry.ITEM, new Identifier(UnlitTorches.MODID, "unlit_torch"), new BlockItem(UNLIT_TORCH, new Item.Settings().group(ItemGroup.DECORATIONS)));
         Registry.register(Registry.ITEM, new Identifier(UnlitTorches.MODID, "unlit_soul_torch"), new BlockItem(UNLIT_SOUL_TORCH, new Item.Settings().group(ItemGroup.DECORATIONS)));
+        Registry.register(Registry.ITEM, new Identifier(UnlitTorches.MODID, "unlit_redstone_torch"), new BlockItem(UNLIT_REDSTONE_TORCH, new Item.Settings().group(ItemGroup.REDSTONE)));
+        Registry.register(Registry.ITEM, new Identifier(UnlitTorches.MODID, "trapped_unlit_torch"), new BlockItem(TRAPPED_UNLIT_TORCH, new Item.Settings().group(ItemGroup.REDSTONE)));
         Registry.register(Registry.ITEM, new Identifier(UnlitTorches.MODID, "unlightable_unlit_torch"), new BlockItem(UNLIGHTABLE_UNLIT_TORCH, new Item.Settings().group(ItemGroup.DECORATIONS)));
     }
 }

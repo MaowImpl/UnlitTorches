@@ -1,6 +1,9 @@
 {
   "block.unlittorches.unlit_torch": "Unlit Torch",
+  "block.unlittorches.unlit_redstone_torch": "Unlit Redstone Torch",
   "block.unlittorches.unlit_soul_torch": "Unlit Soul Torch",
+
+  "block.unlittorches.trapped_unlit_torch": "Trapped Unlit Torch",
 
   "block.unlittorches.unlightable_unlit_torch": "Unlightable Unlit Torch",
 

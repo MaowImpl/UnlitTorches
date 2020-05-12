@@ -2,11 +2,13 @@ package maowcraft.unlittorches.common.block;
 
 import maowcraft.unlittorches.api.ICanLightUnlitTorch;
 import maowcraft.unlittorches.api.IHasAdvancedLightFunctions;
+import maowcraft.unlittorches.common.init.UnlitTorchesContent;
 import maowcraft.unlittorches.config.UnlitTorchesConfig;
 import maowcraft.unlittorches.util.TorchTypes;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.RedstoneTorchBlock;
 import net.minecraft.block.TorchBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -23,7 +25,7 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 public class UnlitTorchBlock extends TorchBlock {
-    private TorchTypes type;
+    private final TorchTypes type;
 
     public UnlitTorchBlock(Settings settings, TorchTypes type) {
         super(settings.nonOpaque().noCollision(), ParticleTypes.FLAME);
@@ -48,6 +50,8 @@ public class UnlitTorchBlock extends TorchBlock {
         if (itemStack.getItem() == Items.FLINT_AND_STEEL || itemStack.getItem() instanceof ICanLightUnlitTorch || itemStack.getItem() == type.litItem || itemCanLight) {
             if (itemStack.getItem() instanceof ICanLightUnlitTorch) {
                 world.playSound(player, pos.getX(), pos.getY(), pos.getZ(), ((ICanLightUnlitTorch) itemStack.getItem()).soundPlayedOnUse(), SoundCategory.NEUTRAL, 1.0F, 1.0F);
+            } else if (itemStack.getItem() == Items.FLINT_AND_STEEL) {
+                world.playSound(player, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.NEUTRAL, 1.0F, 1.0F);
             } else {
                 world.playSound(player, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.NEUTRAL, 1.0F, 1.0F);
             }
@@ -60,7 +64,7 @@ public class UnlitTorchBlock extends TorchBlock {
                     world.setBlockState(pos, Blocks.AIR.getDefaultState());
                 } else if (itemStack.getItem() instanceof ICanLightUnlitTorch && ((ICanLightUnlitTorch) itemStack.getItem()).addLitTorchToInventory()) {
                     player.giveItemStack(new ItemStack(type.litBlock));
-                    world.setBlockState(pos, Blocks.AIR.getDefaultState());
+                    world.setBlockState(pos, type.litBlock.getDefaultState());
                     if (((ICanLightUnlitTorch) itemStack.getItem()).depletedOnUse() && !player.isCreative()) {
                         player.inventory.removeOne(itemStack);
                     }

@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "unlittorches:block/trapped_unlit_torch"
+    }
+}
