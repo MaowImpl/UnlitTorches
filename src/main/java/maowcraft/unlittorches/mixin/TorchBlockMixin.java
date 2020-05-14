@@ -1,7 +1,6 @@
 package maowcraft.unlittorches.mixin;
 
 import maowcraft.unlittorches.common.init.UnlitTorchesContent;
-import maowcraft.unlittorches.util.TorchTypes;
 import net.minecraft.block.*;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -30,13 +29,10 @@ public class TorchBlockMixin extends Block {
     @Intrinsic
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        System.out.println("Randomly ticked");
         float chance = 0.8f;
         boolean isExtinguished = (ThreadLocalRandom.current().nextFloat() > chance);
-        System.out.println("Did it get extingushed? " + isExtinguished);
         Block block = state.getBlock();
         if (isExtinguished) {
-            System.out.println("Random Extinguished");
             extinguish(world, block, pos, state);
         }
     }
@@ -46,20 +42,12 @@ public class TorchBlockMixin extends Block {
             world.setBlockState(pos, UnlitTorchesContent.UNLIT_TORCH.getDefaultState());
             world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.NEUTRAL, 0.0f, 0.0f, true);
         }
-        else if (block == Blocks.SOUL_TORCH) {
-            world.setBlockState(pos, UnlitTorchesContent.UNLIT_SOUL_TORCH.getDefaultState());
-            world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.NEUTRAL, 0.0f, 0.0f, true);
-        }
         else if (block == Blocks.REDSTONE_TORCH) {
             world.setBlockState(pos, UnlitTorchesContent.UNLIT_REDSTONE_TORCH.getDefaultState());
             world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.NEUTRAL, 0.0f, 0.0f, true);
         }
         else if (block == Blocks.WALL_TORCH) {
             world.setBlockState(pos, UnlitTorchesContent.UNLIT_WALL_TORCH.getDefaultState().with(WallTorchBlock.FACING, state.get(WallTorchBlock.FACING)));
-            world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.NEUTRAL, 0.0f, 0.0f, true);
-        }
-        else if (block == Blocks.SOUL_WALL_TORCH) {
-            world.setBlockState(pos, UnlitTorchesContent.UNLIT_SOUL_WALL_TORCH.getDefaultState().with(WallTorchBlock.FACING, state.get(WallTorchBlock.FACING)));
             world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.NEUTRAL, 0.0f, 0.0f, true);
         }
         else if (block == Blocks.REDSTONE_WALL_TORCH) {

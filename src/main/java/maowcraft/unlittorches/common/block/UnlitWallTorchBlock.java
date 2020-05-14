@@ -27,7 +27,7 @@ public class UnlitWallTorchBlock extends WallTorchBlock {
     private final WallTorchTypes type;
 
     public UnlitWallTorchBlock(Settings settings, WallTorchTypes type) {
-        super(settings.nonOpaque().noCollision(), ParticleTypes.FLAME);
+        super(settings.nonOpaque().noCollision());
         this.type = type;
     }
 

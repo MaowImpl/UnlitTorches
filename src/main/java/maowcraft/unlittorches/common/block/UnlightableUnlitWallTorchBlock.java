@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class UnlightableUnlitWallTorchBlock extends WallTorchBlock {
     public UnlightableUnlitWallTorchBlock(Settings settings) {
-        super(settings.nonOpaque().noCollision(), ParticleTypes.FLAME);
+        super(settings.nonOpaque().noCollision());
     }
 
     @Override

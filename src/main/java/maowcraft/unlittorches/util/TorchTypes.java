@@ -8,7 +8,6 @@ import net.minecraft.item.Items;
 
 public enum TorchTypes {
     REGULAR(UnlitTorchesContent.UNLIT_TORCH, Blocks.TORCH, Items.TORCH),
-    SOUL(UnlitTorchesContent.UNLIT_SOUL_TORCH, Blocks.SOUL_TORCH, Items.SOUL_TORCH),
     REDSTONE(UnlitTorchesContent.UNLIT_REDSTONE_TORCH, Blocks.REDSTONE_TORCH, Items.REDSTONE_TORCH),
     TRAPPED(UnlitTorchesContent.TRAPPED_UNLIT_TORCH, Blocks.REDSTONE_TORCH, Items.TORCH);
 

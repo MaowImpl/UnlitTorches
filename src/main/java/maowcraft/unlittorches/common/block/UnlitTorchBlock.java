@@ -11,7 +11,6 @@ import net.minecraft.block.TorchBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
@@ -26,7 +25,7 @@ public class UnlitTorchBlock extends TorchBlock {
     public final TorchTypes type;
 
     public UnlitTorchBlock(Settings settings, TorchTypes type) {
-        super(settings.nonOpaque().noCollision(), ParticleTypes.FLAME);
+        super(settings.nonOpaque().noCollision());
         this.type = type;
     }
 

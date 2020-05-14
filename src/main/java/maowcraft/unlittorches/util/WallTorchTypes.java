@@ -7,7 +7,6 @@ import net.minecraft.item.Items;
 
 public enum WallTorchTypes {
     REGULAR(Blocks.WALL_TORCH, Items.TORCH),
-    SOUL(Blocks.SOUL_WALL_TORCH, Items.SOUL_TORCH),
     REDSTONE(Blocks.REDSTONE_WALL_TORCH, Items.REDSTONE_TORCH),
     TRAPPED(Blocks.REDSTONE_WALL_TORCH, Items.TORCH);
 
