@@ -1,22 +1,29 @@
 package maowcraft.unlittorches;
 
-import maowcraft.unlittorches.common.init.UnlitTorchesContent;
-import maowcraft.unlittorches.config.UnlitTorchesConfig;
-import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
-import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer;
+import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.api.ModInitializer;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.minecraft.client.render.RenderLayer;
 
-public class UnlitTorches implements ModInitializer {
+public class UnlitTorches implements ModInitializer, ClientModInitializer {
     public static final String MODID = "unlittorches";
-
-    private static final Logger logger = LogManager.getLogger(MODID);
 
     @Override
     public void onInitialize() {
-        AutoConfig.register(UnlitTorchesConfig.class, JanksonConfigSerializer::new);
-        UnlitTorchesContent.registerAll();
-        logger.info("UnlitTorches has initialized.");
+        UnlitTorchesContent.init();
+    }
+
+    @Environment(EnvType.CLIENT)
+    @Override
+    public void onInitializeClient() {
+        BlockRenderLayerMap.INSTANCE.putBlock(UnlitTorchesContent.UNLIT_TORCH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(UnlitTorchesContent.UNLIT_SOUL_TORCH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(UnlitTorchesContent.UNLIT_REDSTONE_TORCH, RenderLayer.getCutout());
+
+        BlockRenderLayerMap.INSTANCE.putBlock(UnlitTorchesContent.UNLIT_WALL_TORCH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(UnlitTorchesContent.UNLIT_SOUL_WALL_TORCH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(UnlitTorchesContent.UNLIT_REDSTONE_WALL_TORCH, RenderLayer.getCutout());
     }
 }

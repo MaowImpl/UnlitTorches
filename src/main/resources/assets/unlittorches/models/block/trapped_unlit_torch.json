@@ -1,6 +1,0 @@
-{
-    "parent": "block/template_torch",
-    "textures": {
-        "torch": "unlittorches:block/trapped_unlit_torch"
-    }
-}

@@ -1,22 +1,5 @@
 {
   "block.unlittorches.unlit_torch": "Unlit Torch",
   "block.unlittorches.unlit_redstone_torch": "Unlit Redstone Torch",
-  "block.unlittorches.unlit_soul_torch": "Unlit Soul Torch",
-
-  "block.unlittorches.trapped_unlit_torch": "Trapped Unlit Torch",
-
-  "block.unlittorches.unlightable_unlit_torch": "Unlightable Unlit Torch",
-
-  "item.unlittorches.flint_and_wood": "Flint and Wood",
-  "item.unlittorches.flint_and_coal": "Flint and Coal",
-  "item.unlittorches.flint_and_gold": "Flint and Gold",
-  "item.unlittorches.flint_and_diamond": "Flint and Diamond",
-  "item.unlittorches.flint_and_emerald": "Flint and Emerald",
-  "item.unlittorches.flint_and_netherite": "Flint and Netherite",
-
-  "item.unlittorches.creative_flint_and_steel": "Creative Flint and Steel",
-
-  "text.autoconfig.unlittorches.title": "Unlit Torches Config",
-  "text.autoconfig.unlittorches.option.litTorchMovesUnlitToInventory": "Lit torch moves unlit torch on inventory when lit",
-  "text.autoconfig.unlittorches.option.itemsThatCanLightList": "User-defined items that can light torches list"
+  "block.unlittorches.unlit_soul_torch": "Unlit Soul Torch"
 }

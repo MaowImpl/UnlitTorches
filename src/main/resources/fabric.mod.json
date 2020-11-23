@@ -3,7 +3,7 @@
   "id": "unlittorches",
   "version": "${version}",
   "name": "Unlit Torches",
-  "description": "Crafting torches now crafts unlit torches, light torches using one of flint & steel and new alternatives.",
+  "description": "Crafting torches now crafts unlit torches, light torches using flint & steel.",
   "authors": [
     "Maowcraft"
   ],
@@ -20,18 +20,15 @@
       "maowcraft.unlittorches.UnlitTorches"
     ],
     "client": [
-      "maowcraft.unlittorches.UnlitTorchesClient"
-    ],
-    "modmenu": [
-      "maowcraft.unlittorches.config.UnlitTorchesModMenuEntry"
+      "maowcraft.unlittorches.UnlitTorches"
     ]
   },
   "mixins": [
     "unlittorches.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.8.2+build.194",
-    "fabric": "*",
-    "minecraft": "1.16-alpha.20.19.a"
+    "fabricloader": ">=0.10.1+build.209",
+    "fabric": ">=0.26.1+1.16",
+    "minecraft": "1.16.4"
   }
 }

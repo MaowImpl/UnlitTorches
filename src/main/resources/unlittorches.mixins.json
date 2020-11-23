@@ -4,7 +4,7 @@
   "package": "maowcraft.unlittorches.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "TorchBlockMixin"
+    "MixinTorchBlock"
   ],
   "injectors": {
     "defaultRequire": 1
